@@ -1,9 +1,8 @@
 {-# OPTIONS --cubical --safe #-}
 module Cubical.Structures.Everything where
 
-open import Cubical.Structures.Pointed public
-open import Cubical.Structures.InftyMagma public
-open import Cubical.Structures.Monoid public
-open import Cubical.Structures.Queue public
-
-open import Cubical.Structures.TypeEqvTo public
+import Cubical.Structures.InftyMagma
+import Cubical.Structures.Monoid
+import Cubical.Structures.Pointed
+import Cubical.Structures.Queue
+import Cubical.Structures.TypeEqvTo

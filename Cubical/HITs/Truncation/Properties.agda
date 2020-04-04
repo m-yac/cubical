@@ -8,7 +8,7 @@ open import Cubical.Foundations.Isomorphism
 open import Cubical.Foundations.HLevels
 open import Cubical.Foundations.PathSplitEquiv
 open isPathSplitEquiv
-open import Cubical.Modalities.Everything
+open import Cubical.Modalities.Modality
 open Modality
 
 open import Cubical.Data.Empty as ⊥ using (⊥)
