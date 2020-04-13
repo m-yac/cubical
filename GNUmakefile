@@ -1,6 +1,7 @@
 AGDA_EXEC=agda
 RTS_OPTIONS=+RTS -H3G -RTS
 AGDA=$(AGDA_EXEC) $(RTS_OPTIONS)
+EVERYTHINGS=runhaskell ./Everythings.hs
 
 .PHONY : all
 all : check
@@ -18,19 +19,24 @@ check-whitespace:
 
 .PHONY : check-everythings
 check-everythings:
-	runhaskell ./GenEverythings.hs check Experiments
+	$(EVERYTHINGS) check-except Experiments
 
 .PHONY : gen-everythings
 gen-everythings:
-	runhaskell ./GenEverythings.hs gen Core Foundations Codata Experiments
+	$(EVERYTHINGS) gen-except Core Foundations Codata Experiments
+
+.PHONY : check-README
+check-README:
+	$(EVERYTHINGS) checkREADME
 
 .PHONY : check
-check:
+check: $(wildcard Cubical/**/*.agda)
 	$(AGDA) Cubical/Core/Everything.agda
 	$(AGDA) Cubical/Foundations/Everything.agda
 	$(AGDA) Cubical/Codata/Everything.agda
 	$(AGDA) Cubical/Data/Everything.agda
 	$(AGDA) Cubical/HITs/Everything.agda
+	$(AGDA) Cubical/Homotopy/Everything.agda
 	$(AGDA) Cubical/Relation/Everything.agda
 	$(AGDA) Cubical/Induction/Everything.agda
 	$(AGDA) Cubical/Modalities/Everything.agda
@@ -41,7 +47,7 @@ check:
 	$(AGDA) Cubical/Categories/Everything.agda
 
 .PHONY: listings
-listings:
+listings: $(wildcard Cubical/**/*.agda)
 	$(AGDA) -i. -isrc --html Cubical/README.agda -v0
 
 .PHONY : clean
